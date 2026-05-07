@@ -1,0 +1,12 @@
+id = "alloy"
+name = "Alloy"
+version = "0.1.0"
+schema_version = 1
+authors = ["genthaler"]
+description = "Alloy 6 syntax highlighting for Zed."
+repository = "https://github.com/genthaler/zed-alloy"
+languages = ["languages/alloy"]
+
+[grammars.alloy6]
+repository = "https://github.com/genthaler/tree-sitter-alloy6"
+rev = "eadb3528d2ea137003ab8e1f033b6db0c1a2a675"
