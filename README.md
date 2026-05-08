@@ -8,7 +8,9 @@ Alloy 6 language support for [Zed](https://zed.dev), powered by
 - Recognizes `.als` files as Alloy.
 - Provides syntax highlighting for parsed Alloy modules, declarations,
   paragraphs, expressions, comments, and commands.
-- Configures basic Alloy editor behavior such as comments and bracket pairing.
+- Configures Alloy editor behavior such as comments, two-space indentation,
+  bracket pairing, bracket matching, code outline entries, syntax overrides for
+  comments, and Vim text objects.
 
 ## Current Scope
 
@@ -22,6 +24,24 @@ Highlighting is syntax-based. The extension does not perform semantic analysis,
 so references are highlighted conservatively based on their parse context.
 
 Formatting is not implemented.
+
+## Roadmap
+
+Remaining work is intentionally outside the current minimal extension:
+
+- Add formatter support once there is a clear Alloy formatting tool or a
+  project-local formatting strategy.
+- Add language-server support if an Alloy LSP becomes available or worth
+  maintaining.
+- Add completions, diagnostics, go-to-definition, and hover information through
+  an LSP or another semantic integration.
+- Add runnable commands for `run` and `check` declarations if Zed extension APIs
+  can launch Alloy tooling in a predictable way.
+- Add snippets for common Alloy declarations and command shapes.
+- Extend the Tree-sitter grammar and highlight queries as unsupported Alloy 6
+  syntax is discovered.
+- Add automated extension-level checks if Zed exposes a practical way to test
+  dev-extension loading outside the editor.
 
 ## Installation
 
@@ -76,6 +96,12 @@ The extension layout follows Zed's language extension conventions:
 - `extension.toml` declares extension metadata and the Tree-sitter grammar.
 - `languages/alloy/config.toml` maps `.als` files to the Alloy language.
 - `languages/alloy/highlights.scm` contains Tree-sitter highlight queries.
+- `languages/alloy/brackets.scm` defines bracket matching.
+- `languages/alloy/indents.scm` defines indentation regions.
+- `languages/alloy/outline.scm` defines code outline entries.
+- `languages/alloy/overrides.scm` defines syntactic scopes used by editor
+  setting overrides.
+- `languages/alloy/textobjects.scm` defines Vim-mode text objects.
 - `examples/example.als` provides a small manual test file.
 
 Useful checks:
@@ -83,6 +109,11 @@ Useful checks:
 ```sh
 tree-sitter parse examples/example.als
 tree-sitter query languages/alloy/highlights.scm examples/example.als
+tree-sitter query languages/alloy/brackets.scm examples/example.als
+tree-sitter query languages/alloy/indents.scm examples/example.als
+tree-sitter query languages/alloy/outline.scm examples/example.als
+tree-sitter query languages/alloy/overrides.scm examples/example.als
+tree-sitter query languages/alloy/textobjects.scm examples/example.als
 ```
 
 Run those from a checkout of the grammar repository, or configure Tree-sitter's
