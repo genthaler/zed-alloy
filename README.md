@@ -37,6 +37,20 @@ Until this extension is published, install it as a Zed dev extension:
 If Zed does not pick up changes immediately, run `zed: reload extensions` from
 the command palette and reopen the Alloy file.
 
+If the Tree-sitter grammar revision changes in `extension.toml`, `zed: reload
+extensions` may not be enough. Zed can keep using a previously generated grammar
+cache under this repository's ignored `grammars/` directory, which can make
+highlighting disappear or produce an error such as `failed to load language
+Alloy`.
+
+For grammar revision changes, reinstall the dev extension:
+
+1. Remove the generated `grammars/` directory from this checkout if it exists.
+2. Run `zed: extensions` from the command palette.
+3. Select `Install Dev Extension`.
+4. Choose the cloned `zed-alloy` directory again.
+5. Reopen the `.als` file.
+
 ## Example
 
 See [examples/example.als](examples/example.als) for a small readable Alloy
