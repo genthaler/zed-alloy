@@ -1,16 +1,20 @@
-abstract sig Object {}
+module examples/tree
 
-one sig Root extends Object {}
-
-sig Node in Object {
-  universe: univ,
-  empty: none,
-  reachable: univ,
+abstract sig Node {
+  parent: lone Node,
 }
 
-var sig State {
-  selected: none,
-} {
-  none
-  iden
+one sig Root extends Node {}
+
+sig Leaf in Node {}
+
+fact TreeShape {
+  no Root.parent
+  all n: Node | n != Root implies some n.parent
 }
+
+pred connected {
+  all n: Node | n in Root.*parent
+}
+
+run connected for 5 Node

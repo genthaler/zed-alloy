@@ -6,20 +6,20 @@ Alloy 6 language support for [Zed](https://zed.dev), powered by
 ## Features
 
 - Recognizes `.als` files as Alloy.
-- Provides syntax highlighting for the subset currently parsed by the
-  Tree-sitter grammar.
+- Provides syntax highlighting for parsed Alloy modules, declarations,
+  paragraphs, expressions, comments, and commands.
 - Configures basic Alloy editor behavior such as comments and bracket pairing.
 
 ## Current Scope
 
 This extension is intentionally minimal. It currently supports syntax
-highlighting for the grammar's existing Alloy subset, including signatures,
-signature inheritance/inclusion, fields, multiplicities, and built-in constants
-such as `none`, `univ`, and `iden`.
+highlighting for the Alloy constructs represented by the Tree-sitter grammar,
+including modules, opens, signatures, facts, predicates, functions, assertions,
+commands, enums, fields, multiplicities, common expressions, comments, and
+built-in constants such as `none`, `univ`, and `iden`.
 
-The underlying grammar does not yet parse all Alloy 6 constructs. Richer
-highlighting for facts, predicates, functions, assertions, commands, modules,
-and full expressions will require extending the Tree-sitter grammar first.
+Highlighting is syntax-based. The extension does not perform semantic analysis,
+so references are highlighted conservatively based on their parse context.
 
 Formatting is not implemented.
 
@@ -39,8 +39,9 @@ the command palette and reopen the Alloy file.
 
 ## Example
 
-See [examples/example.als](examples/example.als) for a small file that exercises
-the currently supported syntax.
+See [examples/example.als](examples/example.als) for a small readable Alloy
+model and [examples/grammar-smoke.als](examples/grammar-smoke.als) for a broader
+grammar smoke file.
 
 ## Grammar
 
