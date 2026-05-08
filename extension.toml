@@ -9,4 +9,4 @@ languages = ["languages/alloy"]
 
 [grammars.alloy6]
 repository = "https://github.com/genthaler/tree-sitter-alloy6"
-rev = "7c6e3150991279eef3ab1df656b73b13d5fa995f"
+rev = "207dcf15bca4455f6506d93854624d78544e786f"
