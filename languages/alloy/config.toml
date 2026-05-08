@@ -1,12 +1,17 @@
 name = "Alloy"
 grammar = "alloy6"
 path_suffixes = ["als"]
+tab_size = 2
+hard_tabs = false
 line_comments = ["// ", "-- "]
 block_comments = ["/* ", " */"]
 autoclose_before = ";:.,=}])"
 brackets = [
-  { start = "{", end = "}", close = true, newline = true },
-  { start = "[", end = "]", close = true, newline = true },
-  { start = "(", end = ")", close = true, newline = true },
+  { start = "{", end = "}", close = true, newline = true, not_in = ["comment"] },
+  { start = "[", end = "]", close = true, newline = true, not_in = ["comment"] },
+  { start = "(", end = ")", close = true, newline = true, not_in = ["comment"] },
 ]
 word_characters = ["_", "'"]
+
+[overrides.comment]
+word_characters = []
